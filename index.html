@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+            * {
+            box-sizing: border-box !important;
+        }
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border: 1px solid  rgb(0, 183, 255);
+            border-radius: 15px;
+            width: 60%;
+            padding: 10px;
+            margin: 100px auto;
+            box-shadow: 1px 1px teal, 2px 2px teal, 1px 1px teal, -1px -1px teal, 1px 1px teal, 1px 1px teal;
+        }
+        input {
+            border: 2px solid  rgb(0, 183, 255);
+            padding: 7px;
+            border-radius: 5px;
+            width: 100%;
+        }
+        #button {
+            border: none;
+            background-color: rgb(0, 183, 255);
+            padding: 8px;
+            color: lavender;
+            text-align: center;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+</style>
+<body style="background-image: url(Images/images.jpeg); background-position: center; background-repeat: no-repeat; background-size: cover;">
+    <div>
+        <h1 style="text-align: center; text-decoration: underline; color: rgb(0, 183, 255);">My Products</h1>
+        <input type="text" placeholder="Product Name" id="proName"> <br> <br>
+        <input type="text" placeholder="Product Description" id="proDesc"> <br> <br>
+        <input type="text" placeholder="Product Price" id="proPri"> <br> <br>
+        <button onclick="submit()" id="button">Submit</button>
+        <div id="Disp"></div>
+    </div>
+
+    <script>
+        var allProducts = []
+        function submit () {
+            var name = proName.value
+            var description = proDesc.value
+            var price = proPri.value
+
+            var allItems = {name, description, price}
+            allProducts.push(allItems)
+            proName.value = ""
+            proDesc.value = ""
+            proPri.value = ""
+            displayItems ()
+        }
+
+        function deletePro(index){
+            allProducts.splice(index, 1)
+            Disp.innerHTML = "";
+            displayItems ()
+        }
+
+        function displayItems () {
+            allProducts.map((all, index)=>{
+                Disp.innerHTML += `<br>
+                <tr>
+                    <td>${index+1}</td>
+                    <td>${all.name}</td>
+                    <td>${all.description}</td>
+                    <td>${all.price}</td>
+                    <td><button onclick= "deletePro(${index})">Delete</td>
+                    </tr>
+                `
+            });
+        }
+    </script>
+</body>
+</html>
